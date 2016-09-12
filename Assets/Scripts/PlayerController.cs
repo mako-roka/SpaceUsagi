@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 	
 	public float walkspeed = 6.0f;
 	public float GroundHeight = 1.1f;
-	private float slidespeed = 15.0f;
+	public float slidespeed = 15.0f;
 	private Vector2 faceDir;
 	private float speed = 0;
 
@@ -40,7 +40,12 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
 		RaycastHit groundedHit;
 		bool grounded = Physics.Raycast(transform.position, -transform.up, out groundedHit, GroundHeight);
-		
+
+
+		if (grounded)
+		{
+		}
+
 		//if (grounded)
 		//{
 			/*// Calculate how fast we should be moving
@@ -61,9 +66,7 @@ public class PlayerController : MonoBehaviour {
 			if(!isGrab) {
 			     if(Mathf.Abs(Input.GetAxisRaw ("Horizontal")) >= 0.1 || Mathf.Abs(Input.GetAxisRaw ("Vertical")) >= 0.1) {
 			       anim.SetBool ("isWalk", true);
-					if(Mathf.Abs(Input.GetAxisRaw ("Horizontal")) >= 0.1) {
-					   faceDir.x = Input.GetAxisRaw ("Horizontal");
-					}
+				    faceDir.x = Mathf.Sign(Input.GetAxisRaw ("Horizontal"));
 					faceDir.y = Input.GetAxisRaw ("Vertical");
 					speed = walkspeed;
 			     } else {
@@ -85,7 +88,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 		if (faceDir.x != 0) {
-			transform.localScale = new Vector3 (0.44f * faceDir.x, transform.localScale.y, transform.localScale.z);
+			transform.localScale = new Vector3 (0.44f * -faceDir.x, 0.44f, 0.44f);
 		}
 			rigidBody.MovePosition(rigidBody.position + transform.TransformDirection(moveDir) * speed * Time.deltaTime);
 		//}

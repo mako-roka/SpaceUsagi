@@ -6,9 +6,9 @@ public class CameraControl : MonoBehaviour {
 	public float angleX = 33;
 	public float angleY = 1;
 	public float angleZ = 1;
-	public float posX = 0;
-	public float posY = 0;
-	public float posZ = 0;
+	//public float posX = 0;
+	//public float posY = 0;
+	//public float posZ = 0;
 	
 	[SerializeField]
 	private Transform target;
